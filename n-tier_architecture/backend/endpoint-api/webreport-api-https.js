@@ -6,6 +6,11 @@ let cors = require('cors');
 
 const OnlineAgent = require('./repository/OnlineAgent');
 
+const apiconfig = require('./apiconfig').development;
+
+//const { development } = require('./apiconfig');
+console.dir("apiconfig: "+JSON.stringify(apiconfig));
+
 //-------------------------------------
 
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
@@ -13,6 +18,84 @@ process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 const apiport = 8443
 
 var url = require('url');
+const { development } = require('./sqlConfig');
+const { error } = require('console');
+
+//---------------- Websocket Part1 Start -----------------------
+
+var webSocketServer = new (require('ws')).Server({
+    port: (process.env.PORT || 3071)
+}),
+    clientWebSockets = {} // userID: webSocket
+CLIENTS = [];
+
+webSocketServer.on('connection', (ws, req) => {
+    var q = url.parse(req.url, true);
+
+    console.log(q.host);
+    console.log(q.pathname);
+    console.log(q.search);
+
+    var qdata = q.query; //returns an object: { year: 2017, month: 'february' }
+
+    console.log("------- webSocketServer ------");
+    console.log("AgentCode: " + qdata.agentcode);
+    ws.agentcode = qdata.agentcode;
+
+    // clientWebSockets[ws.agentcode] = ws;
+    ws.name = ws.agentcode;
+    //CLIENTS.push(ws.agentcode);
+
+    var newItem = ws.agentcode;
+
+    if (CLIENTS.indexOf(newItem) === -1) {
+        clientWebSockets[ws.agentcode] = ws;
+        CLIENTS.push(newItem);
+        ws.send("NEW USER JOINED");
+        console.log("New agent joined");
+    } else {
+        //ws.send("USER ALREADY JOINED");
+        console.log("This agent already joined");
+
+        //-----------------
+        const index = CLIENTS.indexOf(newItem);
+        if (index > -1) {
+            CLIENTS.splice(index, 1);
+        }
+
+        //console.log(CLIENTS); 
+
+        delete clientWebSockets[ws.agentcode]
+        console.log('Previous Agent deleted: ' + ws.agentcode)
+        //---------------------
+        clientWebSockets[ws.agentcode] = ws;
+
+        CLIENTS.push(newItem);
+        ws.send("NEW USER JOINED");
+        console.log("New agent joined");
+        //--------------------
+    }
+
+    //console.log('ws.agentcode : ' + newItem)
+    console.dir('CLIENTS : ' + CLIENTS)
+
+    ws.on('close', function () {
+
+        const index = CLIENTS.indexOf(newItem);
+        if (index > -1) {
+            CLIENTS.splice(index, 1);
+        }
+
+        //console.log(CLIENTS); 
+
+        delete clientWebSockets[ws.agentcode]
+        console.log('Agent deleted: ' + ws.agentcode)
+    })
+
+});
+
+//---------------- Websocket Part1 End -----------------------
+
 
 //init Express
 var app = express();
@@ -74,7 +157,8 @@ const init = async () => {
 
             // here is where you validate your token
             // comparing with token from your database for example
-            const isValid = token === '1aaZ!ARgAQGuQzp00D5D000000.mOv2jmhXkfIsjgywpCIh7.HZpc6vED1LCbc90DTaVDJwdNqbTW5r4uZicv8AFfkOE1ialqnR8UN5.wnAgh090h';
+            //const isValid = token === '1aaZ!ARgAQGuQzp00D5D000000.mOv2jmhXkfIsjgywpCIh7.HZpc6vED1LCbc90DTaVDJwdNqbTW5r4uZicv8AFfkOE1ialqnR8UN5.wnAgh090h';
+            const isValid = token ===apiconfig.serverKey;
 
             const credentials = { token };
             const artifacts = { test: 'info' };
@@ -114,7 +198,7 @@ const init = async () => {
     //-------- Code continue here -------------------
 
  
-
+//getOnlineAgentByAgentCode
     server.route({
         method: 'GET',
         path: '/api/v1/getOnlineAgentByAgentCode',
@@ -158,9 +242,7 @@ const init = async () => {
         }
 
     });
-
-
-
+//api OnlineAgentStatus
     server.route({
         method: 'POST',
         path: '/api/v1/postOnlineAgentStatus',
@@ -211,6 +293,84 @@ const init = async () => {
                             return h.response(responsedata).code(404);
                         else
                             return h.response("Something went wrong. Please try again later.").code(500);
+
+                }
+
+            } catch (err) {
+                console.dir(err)
+            }
+
+        }
+
+    });
+//api sendMessage
+    server.route({
+        method: 'POST',
+        path: '/api/v1/postSendMessage',
+        config: {
+            cors: {
+                origin: [
+                    '*'
+                ],
+                headers: ["Access-Control-Allow-Headers", "Access-Control-Allow-Origin", "Accept", "Authorization", "Content-Type", "If-None-Match", "Accept-language"],
+                additionalHeaders: ["Access-Control-Allow-Headers: Origin, Content-Type, x-ms-request-id , Authorization"],
+                credentials: true
+            },
+            payload: {
+                parse: true,
+                allow: ['application/json', 'multipart/form-data'],
+                multipart: true  // <== this is important in hapi 19
+            }
+        },
+        handler: async (request, h) => {
+            let param = request.payload;
+
+            const FromAgentCode = param.FromAgentCode;
+            const ToAgentCode = param.ToAgentCode;
+            const Message = param.Message;
+            var d = new Date();
+
+            try {
+
+                if ((param.FromAgentCode == null) || (param.ToAgentCode == null))
+                    return h.response("Please provide AgentCode.").code(400);
+                else {
+
+                    
+
+                    //---------------- Websocket -----------------------------
+
+                    if (clientWebSockets[ToAgentCode]) {
+
+                        clientWebSockets[ToAgentCode].send(JSON.stringify({
+                            MessageType: '5',
+                            FromAgentCode: FromAgentCode,
+                            ToAgentCode: ToAgentCode,
+                            DateTime: d.toLocaleString('en-US'),
+                            Message: Message,
+                        }));
+
+                        return ({
+                            error: false,
+                            statusCode: 200,
+                            message: "Message has been set from "+FromAgentCode+" to "+ToAgentCode,
+                        });
+
+                    }
+                    else
+                    return h. response = {
+                        error: true,
+                        statusCode: 404,
+                        errMessage: "Agent not found, cannot send message to agent."
+                    };
+                    
+                    console.log("Response being sent:", response);
+                    
+                    return h.response(response).code(404);
+
+                    
+                    //---------------- Websocket -----------------------------
+
 
                 }
 
