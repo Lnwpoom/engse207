@@ -1,0 +1,20 @@
+{"level":"error","message":"Invalid key(s) found in Parse Server configuration: allowExpriredAuthDataToken","timestamp":"2025-02-07T09:20:47.168Z"}
+{"level":"info","message":"Parse LiveQuery Server started running","timestamp":"2025-02-07T09:20:47.198Z"}
+{"level":"error","message":"Invalid key(s) found in Parse Server configuration: allowExpriredAuthDataToken","timestamp":"2025-02-07T09:22:24.030Z"}
+{"level":"info","message":"Parse LiveQuery Server started running","timestamp":"2025-02-07T09:22:24.057Z"}
+{"level":"error","message":"Invalid key(s) found in Parse Server configuration: allowExpriredAuthDataToken","timestamp":"2025-02-07T09:27:16.128Z"}
+{"level":"info","message":"Parse LiveQuery Server started running","timestamp":"2025-02-07T09:27:16.155Z"}
+{"level":"error","message":"Invalid key(s) found in Parse Server configuration: allowExpriredAuthDataToken","timestamp":"2025-02-07T09:40:10.031Z"}
+{"level":"info","message":"Parse LiveQuery Server started running","timestamp":"2025-02-07T09:40:10.064Z"}
+{"level":"error","message":"Invalid key(s) found in Parse Server configuration: allowExpriredAuthDataToken","timestamp":"2025-02-07T10:02:23.613Z"}
+{"level":"info","message":"Parse LiveQuery Server started running","timestamp":"2025-02-07T10:02:23.664Z"}
+{"level":"warn","message":"DeprecationWarning: The Parse Server option 'encodeParseObjectInCloudFunction' default will change to 'true' in a future version.","timestamp":"2025-02-07T10:05:32.850Z"}
+{"level":"info","message":"Parse LiveQuery Server started running","timestamp":"2025-02-07T10:05:32.878Z"}
+{"context":{},"functionName":"hello","headers":{"accept":"*/*","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"0","content-type":"application/json","host":"localhost:4000","postman-token":"a5bc305b-e2f2-41ac-878e-6f7f3eb09ffa","user-agent":"PostmanRuntime/7.43.0","x-parse-application-id":"wallboardapi","x-parse-master-key":"wallboardapi"},"ip":"::1","level":"info","log":{"appId":"wallboardapi","options":{"jsonLogs":false,"logsFolder":"./logs/","verbose":false}},"master":true,"params":{},"timestamp":"2025-02-07T10:05:45.349Z"}
+{"functionName":"hello","level":"info","message":"Ran cloud function hello for user undefined with:\n  Input: {}\n  Result: \"Hi from Parse Server\"","params":{},"timestamp":"2025-02-07T10:05:45.349Z"}
+{"level":"warn","message":"DeprecationWarning: The Parse Server option 'encodeParseObjectInCloudFunction' default will change to 'true' in a future version.","timestamp":"2025-02-07T10:15:46.953Z"}
+{"level":"info","message":"Parse LiveQuery Server started running","timestamp":"2025-02-07T10:15:46.981Z"}
+{"level":"warn","message":"DeprecationWarning: The Parse Server option 'encodeParseObjectInCloudFunction' default will change to 'true' in a future version.","timestamp":"2025-02-07T10:15:47.931Z"}
+{"level":"info","message":"Parse LiveQuery Server started running","timestamp":"2025-02-07T10:15:47.959Z"}
+{"level":"warn","message":"DeprecationWarning: The Parse Server option 'encodeParseObjectInCloudFunction' default will change to 'true' in a future version.","timestamp":"2025-02-07T10:15:49.940Z"}
+{"level":"info","message":"Parse LiveQuery Server started running","timestamp":"2025-02-07T10:15:49.969Z"}
