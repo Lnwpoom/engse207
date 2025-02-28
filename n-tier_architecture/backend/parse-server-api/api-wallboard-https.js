@@ -37,7 +37,7 @@ const config = {
    // encodeParseObjectInCloudFunction: false 
   };
 
-  const app = express();
+  const app = express();   //สร้่าง Object ที่เป็นตัวกลางให้ออกมา "middle ware"เป็น Web https//
 
   app.use(cors());
   app.use(cors({ origin: '*'}))
