@@ -1,0 +1,24 @@
+{"level":"warn","message":"DeprecationWarning: The Parse Server option 'encodeParseObjectInCloudFunction' default will change to 'true' in a future version.","timestamp":"2025-03-08T04:11:10.885Z"}
+{"level":"info","message":"Parse LiveQuery Server started running","timestamp":"2025-03-08T04:11:10.911Z"}
+{"level":"info","message":"Create new client: 14ecc17b-b035-4a1e-8bcb-33e3d481a06d","timestamp":"2025-03-08T04:14:01.153Z"}
+{"context":{},"functionName":"hello","headers":{"accept":"*/*","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"0","content-type":"application/json","host":"localhost:4000","postman-token":"683cb542-9a46-4d81-967a-4cd81af84d95","user-agent":"PostmanRuntime/7.43.0","x-parse-application-id":"wallboardapi","x-parse-master-key":"wallboardapi"},"ip":"::1","level":"info","log":{"appId":"wallboardapi","options":{"jsonLogs":false,"logsFolder":"./logs/","verbose":false}},"master":true,"params":{},"timestamp":"2025-03-08T04:29:14.610Z"}
+{"functionName":"hello","level":"info","message":"Ran cloud function hello for user undefined with:\n  Input: {}\n  Result: \"Hi from Parse Server\"","params":{},"timestamp":"2025-03-08T04:29:14.616Z"}
+{"functionName":"OnlineAgentByAgentCode","level":"info","message":"Ran cloud function OnlineAgentByAgentCode for user undefined with:\n  Input: {\"AgentCode\":\"9998\"}\n  Result: \"2\"","params":{"AgentCode":"9998"},"timestamp":"2025-03-08T04:29:53.029Z"}
+{"level":"info","message":"Client disconnect: 14ecc17b-b035-4a1e-8bcb-33e3d481a06d","timestamp":"2025-03-08T04:32:37.435Z"}
+{"level":"warn","message":"DeprecationWarning: The Parse Server option 'encodeParseObjectInCloudFunction' default will change to 'true' in a future version.","timestamp":"2025-03-08T04:40:44.395Z"}
+{"level":"info","message":"Parse LiveQuery Server started running","timestamp":"2025-03-08T04:40:44.421Z"}
+{"level":"info","message":"Create new client: 830dab7c-c3dd-4832-bbd6-2d52794854b0","timestamp":"2025-03-08T04:42:07.796Z"}
+{"level":"info","message":"Client disconnect: 830dab7c-c3dd-4832-bbd6-2d52794854b0","timestamp":"2025-03-08T05:20:08.580Z"}
+{"level":"info","message":"Create new client: 25ef8c63-943e-4b89-9d90-a714259801ae","timestamp":"2025-03-08T05:20:09.205Z"}
+{"level":"info","message":"Client disconnect: 25ef8c63-943e-4b89-9d90-a714259801ae","timestamp":"2025-03-08T05:20:28.296Z"}
+{"level":"info","message":"Create new client: 8c6f1afb-ce46-45b7-9cda-efc6c43f2bb1","timestamp":"2025-03-08T05:20:28.617Z"}
+{"level":"info","message":"Client disconnect: 8c6f1afb-ce46-45b7-9cda-efc6c43f2bb1","timestamp":"2025-03-08T05:20:29.807Z"}
+{"level":"info","message":"Create new client: c5269c76-792f-4a13-b6f2-5e7a6bbcd8eb","timestamp":"2025-03-08T05:20:30.119Z"}
+{"level":"info","message":"Client disconnect: c5269c76-792f-4a13-b6f2-5e7a6bbcd8eb","timestamp":"2025-03-08T05:20:30.754Z"}
+{"level":"info","message":"Create new client: 97031b03-a69f-4971-949e-0040c4becec7","timestamp":"2025-03-08T05:20:31.027Z"}
+{"level":"info","message":"Client disconnect: 97031b03-a69f-4971-949e-0040c4becec7","timestamp":"2025-03-08T05:40:38.400Z"}
+{"level":"info","message":"Create new client: b6c3142b-88f1-4d3d-bba8-158736392e83","timestamp":"2025-03-08T05:40:42.745Z"}
+{"level":"info","message":"Client disconnect: b6c3142b-88f1-4d3d-bba8-158736392e83","timestamp":"2025-03-08T05:47:28.871Z"}
+{"level":"info","message":"Create new client: 689c32a4-46f6-4e35-951f-e9cab815c763","timestamp":"2025-03-08T05:47:31.995Z"}
+{"level":"info","message":"Client disconnect: 689c32a4-46f6-4e35-951f-e9cab815c763","timestamp":"2025-03-08T06:25:55.973Z"}
+{"level":"info","message":"Create new client: 588f8977-9ee6-48af-9013-bc0be2d973e7","timestamp":"2025-03-08T06:25:56.435Z"}
